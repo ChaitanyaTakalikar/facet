@@ -9,7 +9,7 @@ import javax.persistence.Id;
 public class FacetModel {
 
 	@Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	private String facetCode;
 	private String facetDisplayName;
@@ -19,26 +19,12 @@ public class FacetModel {
 	private String permission1;
 	private String permission2;
 	private String permission3;
-	
+
 	public FacetModel() {}
 	
 	public FacetModel(String facetCode, String facetDisplayName, String status, String displayOrder,
 			String roles, String permission1, String permission2, String permission3) {
 		super();
-		this.facetCode = facetCode;
-		this.facetDisplayName = facetDisplayName;
-		this.status = status;
-		this.displayOrder = displayOrder;
-		this.roles = roles;
-		this.permission1 = permission1;
-		this.permission2 = permission2;
-		this.permission3 = permission3;
-	}
-	
-	public FacetModel(Long id, String facetCode, String facetDisplayName, String status, String displayOrder,
-			String roles, String permission1, String permission2, String permission3) {
-		super();
-		this.id = id;
 		this.facetCode = facetCode;
 		this.facetDisplayName = facetDisplayName;
 		this.status = status;
@@ -64,7 +50,7 @@ public class FacetModel {
 	public void setFacetCode(String facetCode) {
 		this.facetCode = facetCode;
 	}
-
+	
 	public String getFacetDisplayName() {
 		return facetDisplayName;
 	}
@@ -119,13 +105,6 @@ public class FacetModel {
 
 	public void setPermission3(String permission3) {
 		this.permission3 = permission3;
-	}
-
-	@Override
-	public String toString() {
-		return "FacetModel [id=" + id + ", facetCode=" + facetCode + ", facetDisplayName=" + facetDisplayName
-				+ ", status=" + status + ", displayOrder=" + displayOrder + ", roles=" + roles + ", permission1="
-				+ permission1 + ", permission2=" + permission2 + ", permission3=" + permission3 + "]";
 	}
 	
 }

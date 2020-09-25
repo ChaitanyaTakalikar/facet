@@ -1,17 +1,20 @@
 package com.example.facet.model;
 
+import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 
 @Entity
 public class FacetCategoryModel {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	private String categoryDisplayName;
 	private String facetType;
@@ -20,22 +23,11 @@ public class FacetCategoryModel {
 	private String rangeStart;
 	private String rangeEnd;
 	private String rangeGap;
-
+	@OneToMany(cascade = CascadeType.ALL)
+	List<FacetModel> facetModel=new ArrayList<FacetModel>();
+	
 	public FacetCategoryModel() {}
 	
-	public FacetCategoryModel(Long id, String categoryDisplayName, String facetType, String status, String displayOrder,
-			String rangeStart, String rangeEnd, String rangeGap) {
-		super();
-		this.id = id;
-		this.categoryDisplayName = categoryDisplayName;
-		this.facetType = facetType;
-		this.status = status;
-		this.displayOrder = displayOrder;
-		this.rangeStart = rangeStart;
-		this.rangeEnd = rangeEnd;
-		this.rangeGap = rangeGap;
-	}
-
 	public FacetCategoryModel(Long id, String categoryDisplayName, String facetType, String status, String displayOrder,
 			String rangeStart, String rangeEnd, String rangeGap, List<FacetModel> facetModel) {
 		super();
@@ -47,8 +39,22 @@ public class FacetCategoryModel {
 		this.rangeStart = rangeStart;
 		this.rangeEnd = rangeEnd;
 		this.rangeGap = rangeGap;
+		this.facetModel = facetModel;
 	}
 
+	public FacetCategoryModel(String categoryDisplayName, String facetType, String status, String displayOrder,
+			String rangeStart, String rangeEnd, String rangeGap, List<FacetModel> facetModel) {
+		super();
+		this.categoryDisplayName = categoryDisplayName;
+		this.facetType = facetType;
+		this.status = status;
+		this.displayOrder = displayOrder;
+		this.rangeStart = rangeStart;
+		this.rangeEnd = rangeEnd;
+		this.rangeGap = rangeGap;
+		this.facetModel = facetModel;
+	}
+	
 	public Long getId() {
 		return id;
 	}
@@ -112,12 +118,20 @@ public class FacetCategoryModel {
 	public void setRangeGap(String rangeGap) {
 		this.rangeGap = rangeGap;
 	}
+	
+	public List<FacetModel> getFacetModel() {
+		return facetModel;
+	}
+
+	public void setFacetModel(List<FacetModel> facetModel) {
+		this.facetModel = facetModel;
+	}
 
 	@Override
 	public String toString() {
 		return "FacetCategoryModel [id=" + id + ", categoryDisplayName=" + categoryDisplayName + ", facetType="
 				+ facetType + ", status=" + status + ", displayOrder=" + displayOrder + ", rangeStart=" + rangeStart
-				+ ", rangeEnd=" + rangeEnd + ", rangeGap=" + rangeGap + "]";
+				+ ", rangeEnd=" + rangeEnd + ", rangeGap=" + rangeGap + ", facetModel=" + facetModel + "]";
 	}
 
 }

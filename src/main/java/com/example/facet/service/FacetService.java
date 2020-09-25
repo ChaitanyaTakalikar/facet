@@ -28,9 +28,8 @@ public class FacetService {
 		LOGGER.info("Inside saveFacet");
 		if(testModel!=null) {
 			try {
-				FacetModel test=new FacetModel(testModel.getFacetCode(),testModel.getFacetDisplayName(),
-						testModel.getStatus(),testModel.getDisplayOrder(),testModel.getRoles(),testModel.getPermission1(),
-						testModel.getPermission2(),testModel.getPermission3());
+				FacetModel test=new FacetModel();
+				test.setFacetCode(testModel.getFacetCode());
 				facetRepo.save(test);
 				status = true;
 			} catch (Exception e) {
